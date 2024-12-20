@@ -44,7 +44,9 @@ export default function Index() {
       <SignedOut>
         <p>You are signed out</p>
         <div>
-          <SignInButton />
+          <SignInButton>
+          <button className="inline-flex h-8 items-center justify-center rounded-md bg-neutral-950 px-4 font-medium text-neutral-50 transition active:scale-110 ">click me</button>
+          </SignInButton>
         </div>
         <div>
           <SignUpButton />
