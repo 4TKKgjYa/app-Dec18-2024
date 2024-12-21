@@ -7,8 +7,8 @@ import {
 
 export default function Index() {
   return (
-    <>
-      <header className="flex justify-between">
+    <div className="">
+      <header className="flex justify-between bg-blue-500 sm:bg-red-500">
         <h1>My App</h1>
         <SignedIn>
           <UserButton />
@@ -17,6 +17,6 @@ export default function Index() {
           <SignInButton />
         </SignedOut>
       </header>
-    </>
+    </div>
   );
 }
