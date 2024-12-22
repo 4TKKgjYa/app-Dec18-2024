@@ -17,6 +17,14 @@ export default function Index() {
           <SignInButton />
         </SignedOut>
       </header>
+      <div>
+        <SignedIn>
+          SignedIn!
+        </SignedIn>
+        <SignedOut>
+          SignedOut!
+        </SignedOut>
+      </div>
     </div>
   );
 }
