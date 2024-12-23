@@ -1,5 +1,5 @@
 import { SignedIn, SignedOut } from "@clerk/remix";
-import { Header } from "~/components/header";
+import { Header } from "app/components/header";
 
 export default function Index() {
   return (
