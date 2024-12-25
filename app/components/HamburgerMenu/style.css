@@ -29,6 +29,8 @@ body {
   transition: 0.3s cubic-bezier(0.04, 0.04, 0.12, 0.96);
   transform: scale(1, 0);
   transform-origin: top;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-open .menu {
@@ -58,6 +60,8 @@ body {
   margin: 0 54px;
   opacity: 0;
   transition: 0.5s;
+  display: flex;
+  justify-content: center;
 }
 
 .menu-open .menu a,
