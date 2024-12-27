@@ -6,6 +6,9 @@ const HamburgerMenu = () => {
 
   return (
     <header className={`header ${menuOpen ? "menu-open" : ""}`}>
+      {/* オーバーレイ */}
+      {menuOpen && <div className="overlay"></div>}
+      
       <input
         type="checkbox"
         className="menu-btn"
