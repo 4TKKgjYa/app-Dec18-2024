@@ -112,3 +112,59 @@ input[type=checkbox]:checked ~ #overlay-button span:after {
 #overlay ul li a:hover {
   color: #000!important;
 }
+
+.userIcon {
+  padding: 0 !important;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  width: 50px;
+  height: 50px;
+  background-color: #616161;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-to-top.hidden-by-overlay {
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1; /* Overlayの背面に配置 */
+}
+
+.scroll-to-top:hover {
+  background-color: #000;
+}
+
+.scroll-to-top:active {
+  transform: scale(0.95);
+}

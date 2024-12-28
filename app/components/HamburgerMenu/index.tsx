@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./style.css"; // CSSファイルをインポート
 import {
   SignInButton,
@@ -13,6 +13,11 @@ type HamburgerMenuProps = {
 }
 
 const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     // オーバーレイ表示中にスクロールを無効化
@@ -27,6 +32,18 @@ const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // スクロール位置が100pxを超えたらボタンを表示
+      setShowScrollToTop(!menuOpen && window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <input
@@ -39,6 +56,7 @@ const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
       <label htmlFor="overlay-input" id="overlay-button" aria-label="overlay-button">
         <span></span>
       </label>
+
       <div id="overlay">
         <ul>
           <li className="userIcon">
@@ -72,6 +90,16 @@ const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
           </li>
         </ul>
       </div>
+
+      <button
+        className={`scroll-to-top ${showScrollToTop ? "visible" : "hidden"} ${
+          menuOpen ? "hidden-by-overlay" : ""
+        }`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
     </>
   );
 };
