@@ -1,17 +1,22 @@
+import { useState } from "react";
 import {
   SignInButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/remix";
+import HamburgerMenu from "../HamburgerMenu";
 
 type HeaderProps = {
   title: string;
 }
 
 export const Header = ({ title }: HeaderProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="flex justify-between h-[52px] px-2 bg-blue-900 ss:bg-blue-900 text-white">
+    <header className="flex justify-between h-[52px] bg-blue-300 ss:bg-blue-900 text-white">
+      <HamburgerMenu menuOpen={menuOpen} onClickMenuOpen={setMenuOpen} />
       <h1 className="flex items-center cursor-default">{title}</h1>
       <SignedIn>
         <UserButton />
