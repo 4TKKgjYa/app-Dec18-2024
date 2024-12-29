@@ -7,12 +7,12 @@ import {
   UserButton,
 } from "@clerk/remix";
 
-type HamburgerMenuProps = {
+type ResponsiveMenuProps = {
   menuOpen: boolean;
   onClickMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
+export const ResponsiveMenu = ({ menuOpen, onClickMenuOpen }: ResponsiveMenuProps) => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const scrollToTop = () => {
@@ -103,5 +103,3 @@ const HamburgerMenu = ({ menuOpen, onClickMenuOpen }: HamburgerMenuProps) => {
     </>
   );
 };
-
-export default HamburgerMenu;
