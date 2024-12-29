@@ -36,7 +36,7 @@ export default function Index() {
   
   return (
     <div className="">
-      <Header title="My App" />
+      <Header />
       <main>
         <SignedIn>
           {countries.countries.map((country) => {
