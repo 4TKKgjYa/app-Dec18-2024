@@ -44,8 +44,6 @@ export async function loader({ context }: LoaderFunctionArgs): Promise<{ countri
 export default function Index() {
   const countries = useLoaderData<typeof loader>();
 
-  console.log(countries);
-  
   return (
     <div className="">
       <Header />
