@@ -2,6 +2,7 @@ import { SignedIn, SignedOut } from "@clerk/remix";
 import { Header } from "app/components/header";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from '@supabase/supabase-js';
+import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 
 type Country = {
   id: number;
@@ -12,12 +13,21 @@ type Country = {
   continents: string | null;
 };
 
-export async function loader(): Promise<{ countries: Country[]; }> {
-  console.log("process.env.SUPABASE_URL: ", process.env.SUPABASE_URL)
-  console.log("process.env.SUPABASE_ANON_KEY: ", process.env.SUPABASE_ANON_KEY)
+export async function loader({ context }: LoaderFunctionArgs): Promise<{ countries: Country[]; }> {
+  let env: Env;
+  try {
+    env = process.env as unknown as Env; // ローカルはnodeなのでprocess.env
+  } catch {
+    env = context.cloudflare.env as Env; // Cloudflare Pagesはcontext.cloudflare.env
+  }
+
+  if (!(env.SUPABASE_URL && env.SUPABASE_ANON_KEY)) {
+    throw new Error("SUPABASE_URL or SUPABASE_ANON_KEY is not defined");
+  }
+
   const client = createClient(
-    process.env.SUPABASE_URL || "",
-    process.env.SUPABASE_ANON_KEY || ""
+    env.SUPABASE_URL || "",
+    env.SUPABASE_ANON_KEY || ""
   );
 
   const { data, error } = await client.from("countries").select("*");
