@@ -13,11 +13,11 @@ type Country = {
 };
 
 export async function loader(): Promise<{ countries: Country[]; }> {
-  console.log("import.meta.env.SUPABASE_URL: ", import.meta.env.SUPABASE_URL)
-  console.log("import.meta.env.SUPABASE_ANON_KEY: ", import.meta.env.SUPABASE_ANON_KEY)
+  console.log("process.env.SUPABASE_URL: ", process.env.SUPABASE_URL)
+  console.log("process.env.SUPABASE_ANON_KEY: ", process.env.SUPABASE_ANON_KEY)
   const client = createClient(
-    import.meta.env.SUPABASE_URL,
-    import.meta.env.SUPABASE_ANON_KEY
+    process.env.SUPABASE_URL || "",
+    process.env.SUPABASE_ANON_KEY || ""
   );
 
   const { data, error } = await client.from("countries").select("*");
