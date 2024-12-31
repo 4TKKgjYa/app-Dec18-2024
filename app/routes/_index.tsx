@@ -13,6 +13,8 @@ type Country = {
 };
 
 export async function loader(): Promise<{ countries: Country[]; }> {
+  console.log("import.meta.env.SUPABASE_URL: ", import.meta.env.SUPABASE_URL)
+  console.log("import.meta.env.SUPABASE_ANON_KEY: ", import.meta.env.SUPABASE_ANON_KEY)
   const client = createClient(
     import.meta.env.SUPABASE_URL,
     import.meta.env.SUPABASE_ANON_KEY
